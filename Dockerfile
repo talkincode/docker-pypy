@@ -5,7 +5,7 @@ RUN mkdir /pysetup
 ADD distribute_setup.py /pysetup/distribute_setup.py
 
 RUN apt-get update -y && \
-    apt-get install -y  wget libffi-dev openssl libssl-dev zlib git gcc tcpdump && \
+    apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump && \
     apt-get clean all
 
 RUN cd /opt && wget https://bitbucket.org/pypy/pypy/downloads/pypy-4.0.0-linux64.tar.bz2 && \
