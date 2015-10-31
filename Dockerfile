@@ -12,7 +12,7 @@ RUN yum clean all
 ADD pypy-4.0.0-linux64.tar.bz2 /opt/pypy-4.0.0-linux64.tar.bz2
 
 
-RUN tar -xf pypy-4.0.0-linux64.tar.bz2 && \
+RUN cd /opt && tar -xf pypy-4.0.0-linux64.tar.bz2 && \
     ln -s /opt/pypy-4.0.0-linux64/bin/pypy /usr/local/bin && \
     pypy --version
 
