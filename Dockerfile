@@ -4,8 +4,8 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 RUN yum update -y
 
 RUN yum install -y  wget libffi-devel \
-    openssl openssl-devel zlib git gcc tcpdump \
-    crontabs python-devel python-setuptools
+    openssl openssl-devel zlib git gcc tcpdump crontabs\
+
 
 RUN yum clean all
 
