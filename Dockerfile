@@ -4,7 +4,7 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
 RUN apt-get update -y && \
-    apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump pypy && \
+    apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump pypy pypy-dev && \
     pypy --version && \
     apt-get clean all
 
