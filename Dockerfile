@@ -2,7 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 RUN mkdir /pysetup
-ADD distribute_setup.py /pysetup/distribute_setup.py
+ADD get-pip.py /pysetup/get-pip.py
+ADD distribute-0.7.3.zip /pysetup/distribute-0.7.3.zip
 
 RUN apt-get update -y && \
     apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump && \
@@ -13,8 +14,8 @@ RUN cd /opt && wget https://bitbucket.org/pypy/pypy/downloads/pypy-4.0.0-linux64
     ln -s /opt/pypy-4.0.0-linux64/bin/pypy /usr/local/bin && \
     pypy --version
 
-RUN wget -P /pysetup https://raw.github.com/pypa/pip/master/contrib/get-pip.py && \
-    pypy /pysetup/distribute_setup.py && \
-    pypy /pysetup/get-pip.py && \
-    rm -rf /pysetup && \
-    ln -s /opt/pypy-4.0.0-linux64/bin/pip /usr/local/bin
+RUN cd /pysetup && unzip distribute-0.7.3.zip && cd distribute-0.7.3 && pypy setup.py install
+
+RUN pypy /pysetup/get-pip.py && ln -s /opt/pypy-4.0.0-linux64/bin/pip /usr/local/bin
+
+RUN rm -rf /pysetup
