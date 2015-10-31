@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-RUN apt-get update  && \
-    apt-get install -y  wget libffi-dev openssl openssl-dev git gcc tcpdump crontabs pypy && \
+RUN apt-get update -y && \
+    apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump pypy && \
     pypy --version && \
     apt-get clean all
 
