@@ -1,25 +1,14 @@
-FROM centos:centos7
+FROM ubuntu:14.04
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-RUN yum update -y
+RUN apt-get update  && \
+    apt-get install -y  wget libffi-dev openssl openssl-dev git gcc tcpdump crontabs pypy && \
+    pypy --version && \
+    apt-get clean all
 
-RUN yum install -y  wget libffi-devel \
-    openssl openssl-devel zlib git gcc tcpdump crontabs\
-
-
-RUN yum clean all
-
-ADD pypy-4.0.0-linux64.tar.bz2 /opt/pypy-4.0.0-linux64.tar.bz2
-
-
-RUN cd /opt && tar -xf pypy-4.0.0-linux64.tar.bz2 && \
-    ln -s /opt/pypy-4.0.0-linux64/bin/pypy /usr/local/bin && \
-    pypy --version
-
-RUN curl -O http://python-distribute.org/distribute_setup.py && \
-    curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py && \
-    pypy distribute_setup.py && \
-    pypy get-pip.py && \
-    rm -f get-pip.py && \
-    rm -f distribute_setup.py && \
-    ln -s /opt/pypy-4.0.0-linux64/bin/pip /usr/local/bin
+RUN mkdir /pysetup
+RUN wget -P /pysetup http://python-distribute.org/distribute_setup.py
+RUN wget -P /pysetup https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+RUN pypy /pysetup/distribute_setup.py
+RUN pypy /pysetup/get-pip.py
+RUN rm -rf /pysetup
