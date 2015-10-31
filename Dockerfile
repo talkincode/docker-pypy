@@ -6,7 +6,7 @@ ADD get-pip.py /pysetup/get-pip.py
 ADD distribute-0.7.3.zip /pysetup/distribute-0.7.3.zip
 
 RUN apt-get update -y && \
-    apt-get install -y  wget libffi-dev openssl libssl-dev git gcc tcpdump && \
+    apt-get install -y  wget zip libffi-dev openssl libssl-dev git gcc tcpdump && \
     apt-get clean all
 
 RUN cd /opt && wget https://bitbucket.org/pypy/pypy/downloads/pypy-4.0.0-linux64.tar.bz2 && \
