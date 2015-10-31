@@ -20,6 +20,6 @@ RUN curl -O http://python-distribute.org/distribute_setup.py && \
     curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py && \
     pypy distribute_setup.py && \
     pypy get-pip.py && \
-    rm get-pip.py && \
-    rm distribute_setup.py && \
+    rm -f get-pip.py && \
+    rm -f distribute_setup.py && \
     ln -s /opt/pypy-4.0.0-linux64/bin/pip /usr/local/bin
