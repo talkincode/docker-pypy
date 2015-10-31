@@ -19,3 +19,5 @@ RUN cd /pysetup && unzip distribute-0.7.3.zip && cd distribute-0.7.3 && pypy set
 RUN pypy /pysetup/get-pip.py && ln -s /opt/pypy-4.0.0-linux64/bin/pip /usr/local/bin
 
 RUN rm -rf /pysetup
+
+RUN pypy -m pip install  --upgrade setuptools
