@@ -1,6 +1,16 @@
 FROM ubuntu:14.04
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
+RUN \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y build-essential && \
+  apt-get install -y software-properties-common && \
+  apt-get install -y byobu curl git htop man unzip vim wget && \
+  rm -rf /var/lib/apt/lists/*
+
+
 RUN mkdir /pysetup
 ADD get-pip.py /pysetup/get-pip.py
 ADD distribute-0.7.3.zip /pysetup/distribute-0.7.3.zip
