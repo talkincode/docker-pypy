@@ -36,3 +36,6 @@ RUN pypy -m pip install  supervisor
 
 RUN ln -s /opt/pypy-4.0.0-linux64/bin/supervisord /usr/local/bin && \
     ln -s /opt/pypy-4.0.0-linux64/bin/supervisorctl /usr/local/bin
+
+RUN echo "set nocompatible" >> /root/.vimrc && echo "set backspace=2" >> /root/.vimrc
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
